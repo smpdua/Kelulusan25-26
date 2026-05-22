@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Pengumuman Kelulusan | SMP Negeri 2 Gringsing - SMART GRADUATION</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0b1a33, #030c1a);
+            background-attachment: fixed;
+            color: #f0f4fa;
+            min-height: 100vh;
+        }
+
+        .bg-ornament {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: radial-gradient(circle at 25% 40%, rgba(59,130,246,0.1) 0%, transparent 50%);
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.8rem 1.5rem 3rem;
+        }
+
+        .hero-glow {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(14px);
+            border-radius: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .hero-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 20, 50, 0.7), rgba(0, 10, 30, 0.8));
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .school-brand {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: nowrap;
+        }
+
+        .logo-circle {
+            flex-shrink: 0;
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(145deg, #fbbf24, #d97706);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+            transition: 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title-text h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #bfdbff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .year-tag {
+            background: rgba(251, 191, 36, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.3rem;
+            border-radius: 60px;
+            border: 1px solid rgba(251,191,36,0.5);
+            font-weight: 600;
+        }
+
+        .sambutan {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 1.5rem;
+            margin-top: 1.2rem;
+            padding: 1.2rem 1.8rem;
+            border-left: 5px solid #fbbf24;
+        }
+
+        /* COUNTDOWN STYLE */
+        .countdown-section {
+            margin: 1.5rem 1rem 0.5rem 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1rem 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .countdown-title {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .time-block {
+            background: rgba(0,0,0,0.6);
+            border-radius: 1.2rem;
+            padding: 0.5rem 0.8rem;
+            min-width: 70px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border-bottom: 2px solid #fbbf24;
+        }
+        .time-number {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: monospace;
+            background: linear-gradient(135deg, #fff, #ffd966);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+        .countdown-note {
+            font-size: 0.7rem;
+            margin-top: 0.6rem;
+            opacity: 0.8;
+        }
+        .countdown-ended-badge {
+            background: #10b981;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            color: white;
+        }
+        /* FORM */
+        .form-card {
+            padding: 2rem;
+        }
+
+        .input-icon {
+            position: relative;
+            margin-bottom: 1.8rem;
+        }
+
+        .input-icon i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #fbbf24;
+        }
+
+        .input-icon input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1.5px solid rgba(96, 165, 250, 0.5);
+            padding: 14px 20px 14px 48px;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            color: white;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .input-icon input:focus {
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251,191,36,0.2);
+            outline: none;
+        }
+
+        .btn-celebrate {
+            background: linear-gradient(95deg, #fbbf24, #f59e0b);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-weight: 800;
+            border-radius: 2rem;
+            font-size: 1rem;
+            color: #0c1b33;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+            box-shadow: 0 5px 12px black;
+        }
+
+        .btn-celebrate:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            background: linear-gradient(95deg, #aaa, #888);
+        }
+
+        .btn-celebrate:hover:not(:disabled) {
+            transform: translateY(-3px);
+            background: linear-gradient(95deg, #ffcf50, #ffb347);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            padding: 1rem;
+            opacity: 0.7;
+        }
+
+        /* MODAL */
+        .modal-graduation {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInModal 0.3s ease-out;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; backdrop-filter: blur(0px); }
+            to { opacity: 1; backdrop-filter: blur(12px); }
+        }
+
+        .graduation-card {
+            background: linear-gradient(145deg, #0b1e2f, #041020);
+            width: 90%;
+            max-width: 550px;
+            border-radius: 2.5rem;
+            padding: 2rem 1.8rem;
+            text-align: center;
+            border: 1px solid rgba(251, 191, 36, 0.6);
+            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(255,215,0,0.1);
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform-origin: center;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+        .close-modal:hover { color: #fbbf24; transform: scale(1.1); }
+
+        .medal-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #fbbf24, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-lulusan {
+            background: #10b981;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0.5rem 0;
+        }
+
+        .info-modal {
+            background: rgba(255,255,255,0.05);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .info-row-modal {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        .label-modal {
+            font-weight: 600;
+            color: #fbbf24;
+        }
+
+        .congrats-message {
+            background: rgba(251,191,36,0.1);
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 1rem 0;
+        }
+
+        .btn-download {
+            background: none;
+            border: 1px solid #fbbf24;
+            color: #fbbf24;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+        .btn-download:hover {
+            background: #fbbf24;
+            color: #0a1c2f;
+        }
+
+        @media (max-width: 600px) {
+            .graduation-card { padding: 1.5rem; }
+            .title-text h1 { font-size: 1.2rem; }
+            .time-number { font-size: 1.5rem; }
+            .time-block { min-width: 55px; padding: 0.3rem 0.5rem; }
+            .timer-container { gap: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-ornament"></div>
+<div class="container">
+    <div class="hero-glow" data-aos="fade-up">
+        <div class="hero-header">
+            <div class="school-brand">
+                <div class="logo-wrapper">
+                    <div class="logo-circle">
+                        <img src="https://i.imgur.com/Yr4PWS6.png" alt="Logo SMPN 2 Gringsing">
+                    </div>
+                    <div class="title-text">
+                        <h1>SMP NEGERI 2 GRINGSING</h1>
+                        <p>★ TERAKREDITASI A / BERPRESTASI DAN BERKARAKTER ★</p>
+                    </div>
+                </div>
+                <div class="year-tag">
+                    <i class="far fa-calendar-alt"></i> 2025/2026
+                </div>
+            </div>
+            <div class="sambutan">
+                <h2><i class="fas fa-graduation-cap"></i> Selamat Datang di Pengumuman Digital</h2>
+                <p>Masukkan NISN (10 digit) untuk melihat hasil kelulusan resmi. <br> <strong style="color:#FBBF24;">Sistem akan menampilkan hasil di layar terpisah.</strong></p>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN + BLOKIR AKSES SEBELUM WAKTU TIBA -->
+        <div class="countdown-section" data-aos="fade-up" data-aos-delay="100">
+            <div class="countdown-title">
+                <i class="fas fa-hourglass-half"></i> PENGUMUMAN KELULUSAN DIMULAI DALAM
+            </div>
+            <div class="timer-container" id="countdownTimer">
+                <div class="time-block"><div class="time-number" id="days">00</div><div class="time-label">Hari</div></div>
+                <div class="time-block"><div class="time-number" id="hours">00</div><div class="time-label">Jam</div></div>
+                <div class="time-block"><div class="time-number" id="minutes">00</div><div class="time-label">Menit</div></div>
+                <div class="time-block"><div class="time-number" id="seconds">00</div><div class="time-label">Detik</div></div>
+            </div>
+            <div class="countdown-note">
+                ⏰ Pengumuman resmi: <strong id="targetDateDisplay">02 Juni 2026, 08:00 WIB</strong>
+            </div>
+            <div id="countdownStatusMsg" style="margin-top: 8px; font-weight: 600;"></div>
+        </div>
+
+        <div class="form-card">
+            <div class="input-icon">
+                <i class="fas fa-qrcode"></i>
+                <input type="text" id="nisnInput" placeholder="Contoh: 0117082817" autocomplete="off" disabled>
+            </div>
+            <button class="btn-celebrate" id="btnCekLulus" disabled>
+                <i class="fas fa-certificate"></i> Lihat Pengumuman Resmi
+            </button>
+            <div style="margin-top: 1rem; text-align: center; font-size: 0.7rem;">
+                <i class="fas fa-shield-alt"></i> Data otentik dari Dapodik SMP Negeri 2 Gringsing
+            </div>
+        </div>
+        <footer>
+            © 2026 SPERO JAYA | Validasi Kelulusan TA 2025/2026
+        </footer>
+    </div>
+</div>
+
+<!-- MODAL HASIL KELULUSAN -->
+<div id="graduateModal" class="modal-graduation">
+    <div class="graduation-card">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <div class="medal-icon">
+            <i class="fas fa-award"></i>
+        </div>
+        <div class="badge-lulusan">
+            <i class="fas fa-check-circle"></i> LULUS
+        </div>
+        <div class="info-modal" id="modalInfoContent">
+            <div class="info-row-modal"><span class="label-modal"><i class="fas fa-user"></i> Nama Lengkap</span><span id="modalNama">-</span></div>
+            <div class="info-row-modal"><span class="label-modal"><i class="fas fa-layer-group"></i> Kelas</span><span id="modalKelas">-</span></div>
+            <div class="info-row-modal"><span class="label-modal"><i class="fas fa-id-card"></i> NISN</span><span id="modalNisn">-</span></div>
+        </div>
+        <div class="congrats-message" id="modalUcapan">
+            🎉 Selamat! Anda dinyatakan LULUS dari SMP Negeri 2 Gringsing 🎉
+        </div>
+        <button class="btn-download" id="simpanSertifikatBtn"><i class="fas fa-camera"></i> Simpan Gambar Kelulusan (Screenshot)</button>
+        <p style="font-size: 0.7rem; margin-top: 12px;">💫 Ijazah dapat diambil di sekolah sesuai jadwal yang ditentukan.</p>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 700, once: true });
+
+    // ----------------------------------------------------------------
+    // DATABASE SISWA LULUS (lengkap)
+    // ----------------------------------------------------------------
+    const studentsList = [
+        { nisn: "0117082817", nama: "AFRA AQILA RAMANDHANI", kelas: "9A", status: "LULUS" },
+        { nisn: "3117572381", nama: "AKHMAD UYUN ALMA`ARIF", kelas: "9A", status: "LULUS" },
+        { nisn: "0119687815", nama: "ALAN SAMHAN NAZRIL KHALFANI", kelas: "9A", status: "LULUS" },
+        { nisn: "3109466914", nama: "AMILATIN NADHIFAH", kelas: "9A", status: "LULUS" },
+        { nisn: "0119783561", nama: "ANINDIA MAR'ATU NAFISA", kelas: "9A", status: "LULUS" },
+        { nisn: "0105556525", nama: "ANINDITA LAELATUL MUNA", kelas: "9A", status: "LULUS" },
+        { nisn: "3111107319", nama: "ARDIAN MUHAMMAD FAHRI", kelas: "9A", status: "LULUS" },
+        { nisn: "0116213155", nama: "ATHIYA ILMA ALHUSNA", kelas: "9A", status: "LULUS" },
+        { nisn: "0115509187", nama: "CAMELIA ARUM ALFIANI", kelas: "9A", status: "LULUS" },
+        { nisn: "3110750508", nama: "DANANG FEBRIANTO", kelas: "9A", status: "LULUS" },
+        { nisn: "0109794986", nama: "DAVA TIRTA HERLANDA", kelas: "9A", status: "LULUS" },
+        { nisn: "0105689500", nama: "DESY FARIZKYANA", kelas: "9A", status: "LULUS" },
+        { nisn: "0101762029", nama: "FANES SAIHRIL ANDREAN", kelas: "9A", status: "LULUS" },
+        { nisn: "0107036277", nama: "FATIH FEBRYAN UFARA", kelas: "9A", status: "LULUS" },
+        { nisn: "3110072980", nama: "GILANG RAMADHAN", kelas: "9A", status: "LULUS" },
+        { nisn: "3107359088", nama: "INDRA PUJI SATRIO", kelas: "9A", status: "LULUS" },
+        { nisn: "0105844483", nama: "JENIFER RUBY KOH I NOR SIREGAR", kelas: "9A", status: "LULUS" },
+        { nisn: "0114779762", nama: "KHANSA FADIYATUL HUSNA", kelas: "9A", status: "LULUS" },
+        { nisn: "0118435951", nama: "LISA ANANDA REGINATA", kelas: "9A", status: "LULUS" },
+        { nisn: "0102092713", nama: "MUHAMAD AJI SAPUTRO", kelas: "9A", status: "LULUS" },
+        { nisn: "3105443057", nama: "MUHAMMAD RIFAN ARASYD", kelas: "9A", status: "LULUS" },
+        { nisn: "0093734740", nama: "NARENDRA NAUVAL REVY ACHMAD", kelas: "9A", status: "LULUS" },
+        { nisn: "0101489839", nama: "NATASHA JENNY MIESELLA", kelas: "9A", status: "LULUS" },
+        { nisn: "0117103240", nama: "NDARI MEISYA INDRIYANI", kelas: "9A", status: "LULUS" },
+        { nisn: "0101578395", nama: "NOVA SOFIA HARYANTI", kelas: "9A", status: "LULUS" },
+        { nisn: "0105596748", nama: "QAIREENA AZRA BALQIS AQILAH", kelas: "9A", status: "LULUS" },
+        { nisn: "0105122894", nama: "RAFFA DAMAR RAHMAWAN", kelas: "9A", status: "LULUS" },
+        { nisn: "0104405126", nama: "REVINA DIKA ALTHAFUNNISA", kelas: "9A", status: "LULUS" },
+        { nisn: "0116724593", nama: "SITI ROHIMAH", kelas: "9A", status: "LULUS" },
+        { nisn: "3111708674", nama: "TEGAR PRASTYAWAN", kelas: "9A", status: "LULUS" },
+        { nisn: "0105734122", nama: "VIRSHA KIANA RAHMAWATI", kelas: "9A", status: "LULUS" },
+        { nisn: "0117925569", nama: "ZILLA AYU WIDYA ARUM", kelas: "9A", status: "LULUS" },
+        { nisn: "0103783665", nama: "AHMAD BUNAYA", kelas: "9B", status: "LULUS" },
+        { nisn: "3111255073", nama: "AHMAD FATIH ILMI USTADZI", kelas: "9B", status: "LULUS" },
+        { nisn: "0118635103", nama: "ANGELINA ZAHROTUS SYIFA", kelas: "9B", status: "LULUS" },
+        { nisn: "3111312034", nama: "ANIDA MUFTATAMA", kelas: "9B", status: "LULUS" },
+        { nisn: "0115364592", nama: "AULIA HASNA MAULIDA", kelas: "9B", status: "LULUS" },
+        { nisn: "0114010659", nama: "AVI OLIVIA AISYAHRANI", kelas: "9B", status: "LULUS" },
+        { nisn: "0107631828", nama: "DEA FERGIANI RIZKIN", kelas: "9B", status: "LULUS" },
+        { nisn: "0108792084", nama: "DIAN QURNIA LESTARI PUTRI", kelas: "9B", status: "LULUS" },
+        { nisn: "0102487369", nama: "DION EXCEL ADITYA", kelas: "9B", status: "LULUS" },
+        { nisn: "0106358848", nama: "DISKA MAHESA AYU", kelas: "9B", status: "LULUS" },
+        { nisn: "0112386389", nama: "ERLINIA DWI ARYANI", kelas: "9B", status: "LULUS" },
+        { nisn: "0112975273", nama: "FEBRIYANA NURMILATIN NAUFA", kelas: "9B", status: "LULUS" },
+        { nisn: "0103908424", nama: "IRVAN ADITYA", kelas: "9B", status: "LULUS" },
+        { nisn: "3104699699", nama: "JULI AGUNG SAPUTRA", kelas: "9B", status: "LULUS" },
+        { nisn: "0115841184", nama: "KAFA WAHYU PRATAMA", kelas: "9B", status: "LULUS" },
+        { nisn: "0113329218", nama: "KLARA RISMA", kelas: "9B", status: "LULUS" },
+        { nisn: "0111253585", nama: "MIFTA APRILIA", kelas: "9B", status: "LULUS" },
+        { nisn: "0119662880", nama: "MUHAMAD ALFIYANSAH", kelas: "9B", status: "LULUS" },
+        { nisn: "0102829650", nama: "MUHAMMAD MALIK HISYAM", kelas: "9B", status: "LULUS" },
+        { nisn: "0112211289", nama: "MUHAMMAD RENDY KURNIAWAN", kelas: "9B", status: "LULUS" },
+        { nisn: "3110289941", nama: "NADZIFA SEPTIANI", kelas: "9B", status: "LULUS" },
+        { nisn: "0102445403", nama: "NURUL AZIZAH", kelas: "9B", status: "LULUS" },
+        { nisn: "0109879988", nama: "PRADANA ALFA ROMEO", kelas: "9B", status: "LULUS" },
+        { nisn: "3104142206", nama: "SAFA FELCIA ZELINA", kelas: "9B", status: "LULUS" },
+        { nisn: "0116575253", nama: "SANDY SAPUTRA", kelas: "9B", status: "LULUS" },
+        { nisn: "0118391341", nama: "SRI AWALLIYAH", kelas: "9B", status: "LULUS" },
+        { nisn: "0114853304", nama: "TAUFIKA NADIANA NABITA", kelas: "9B", status: "LULUS" },
+        { nisn: "3118799004", nama: "TRI PRASETIYO", kelas: "9B", status: "LULUS" },
+        { nisn: "0104687941", nama: "ZAKU LANA FIRISKI", kelas: "9B", status: "LULUS" },
+        { nisn: "0112382093", nama: "ZHIAN SHYMA NUR AZAM", kelas: "9B", status: "LULUS" },
+        { nisn: "0106334635", nama: "AHMAD TAUFIQUR ROHMAN", kelas: "9C", status: "LULUS" },
+        { nisn: "0108700660", nama: "AINUR FAJAR MUSTAIN", kelas: "9C", status: "LULUS" },
+        { nisn: "0093124854", nama: "AKBAR AZRIL ALAMZAH", kelas: "9C", status: "LULUS" },
+        { nisn: "0156498252", nama: "ALYA FAZILATUN NISA", kelas: "9C", status: "LULUS" },
+        { nisn: "3117613174", nama: "APRILIANI RESTU WARDANI", kelas: "9C", status: "LULUS" },
+        { nisn: "0102181796", nama: "AYU DYA PUSVITA NINGRUM", kelas: "9C", status: "LULUS" },
+        { nisn: "3116409102", nama: "BUNGA FELLY SAFITRI", kelas: "9C", status: "LULUS" },
+        { nisn: "3103007268", nama: "CRISH ELBERT LILINO", kelas: "9C", status: "LULUS" },
+        { nisn: "0114523255", nama: "FATUR ARZEKO SYAVIERANO", kelas: "9C", status: "LULUS" },
+        { nisn: "0113098714", nama: "FEBRIAN MARFELINO", kelas: "9C", status: "LULUS" },
+        { nisn: "0109560951", nama: "FIDAH AMALIA PUTRI", kelas: "9C", status: "LULUS" },
+        { nisn: "0119527831", nama: "GIBRAN AHMAD AL RAFA", kelas: "9C", status: "LULUS" },
+        { nisn: "0117676281", nama: "HAFIZAH SULIS SETIAWATI", kelas: "9C", status: "LULUS" },
+        { nisn: "0116540835", nama: "IZZAH SYAFANA", kelas: "9C", status: "LULUS" },
+        { nisn: "0111766772", nama: "JENI KENDYANI", kelas: "9C", status: "LULUS" },
+        { nisn: "0102041924", nama: "JEVANNO ADITAMA", kelas: "9C", status: "LULUS" },
+        { nisn: "0115057594", nama: "KHUSNI MANAHIKA SANIA", kelas: "9C", status: "LULUS" },
+        { nisn: "0115302232", nama: "Latifa Kharima Maula", kelas: "9C", status: "LULUS" },
+        { nisn: "3119322596", nama: "M. ASSYAM ALTHAF SYFAULHAQ", kelas: "9C", status: "LULUS" },
+        { nisn: "3106090531", nama: "MIFTAHUL ALIYAH", kelas: "9C", status: "LULUS" },
+        { nisn: "3095752545", nama: "MUHAMMAD ALI WAFA", kelas: "9C", status: "LULUS" },
+        { nisn: "0116015073", nama: "MUHAMMAD RIFKI PRASETIYA", kelas: "9C", status: "LULUS" },
+        { nisn: "3119572842", nama: "MUHAMMAD WISNU GINANJAR", kelas: "9C", status: "LULUS" },
+        { nisn: "0115488716", nama: "NADIA RAMADANI", kelas: "9C", status: "LULUS" },
+        { nisn: "0117602556", nama: "NAUFAL MAULANA HERNANDO", kelas: "9C", status: "LULUS" },
+        { nisn: "0116848351", nama: "NAYZILA CAHYANI PUTRI", kelas: "9C", status: "LULUS" },
+        { nisn: "3106005832", nama: "PUTRA RENDIADI PRATAMA", kelas: "9C", status: "LULUS" },
+        { nisn: "0112696996", nama: "RANTY DINANTY", kelas: "9C", status: "LULUS" },
+        { nisn: "0116513050", nama: "RIZKYNTHIA ORLIN AULIA", kelas: "9C", status: "LULUS" },
+        { nisn: "0109652763", nama: "SHAFA NAJWA NABILAH", kelas: "9C", status: "LULUS" },
+        { nisn: "0092715697", nama: "ADITYA PUTRA PRATAMA", kelas: "9D", status: "LULUS" },
+        { nisn: "0107444438", nama: "AKHMAD FAJAR", kelas: "9D", status: "LULUS" },
+        { nisn: "0102638870", nama: "AKHMAD IQBAL KURNIAWAN", kelas: "9D", status: "LULUS" },
+        { nisn: "0102112112", nama: "ANDIEN AZZAHARA THIBIL MISKY", kelas: "9D", status: "LULUS" },
+        { nisn: "3118579883", nama: "AVRIL MUR AJIANI", kelas: "9D", status: "LULUS" },
+        { nisn: "0115241010", nama: "CITRA PUTRI ANGELINA", kelas: "9D", status: "LULUS" },
+        { nisn: "0092441400", nama: "DAFFA SANDY ISNAEN", kelas: "9D", status: "LULUS" },
+        { nisn: "0113584646", nama: "DANI OKTA PURNAMA", kelas: "9D", status: "LULUS" },
+        { nisn: "3113270101", nama: "DARA NAZILATUL HUSNA", kelas: "9D", status: "LULUS" },
+        { nisn: "0101616637", nama: "FATMA AYU", kelas: "9D", status: "LULUS" },
+        { nisn: "0091362867", nama: "INDAH SUCI SETYANINGRUM", kelas: "9D", status: "LULUS" },
+        { nisn: "3116926165", nama: "KIRANA ANISA RAIHANI", kelas: "9D", status: "LULUS" },
+        { nisn: "0108650114", nama: "Lintang Aji Saputra", kelas: "9D", status: "LULUS" },
+        { nisn: "3100799592", nama: "MARSYA DESTA PUTRI NATANIA", kelas: "9D", status: "LULUS" },
+        { nisn: "0116366319", nama: "MUHAMAD ALDI FIRMANSYAH", kelas: "9D", status: "LULUS" },
+        { nisn: "0108733183", nama: "RAFIFAH SALSABILA", kelas: "9D", status: "LULUS" },
+        { nisn: "0104688565", nama: "RAGIL RAGA PATALA", kelas: "9D", status: "LULUS" },
+        { nisn: "0102589486", nama: "RAKA BONDAN SAPUTRA", kelas: "9D", status: "LULUS" },
+        { nisn: "3119588273", nama: "REZA MAULANA ALFAROBI", kelas: "9D", status: "LULUS" },
+        { nisn: "3110024790", nama: "RIVAN ARIZAL RAMADHANI", kelas: "9D", status: "LULUS" },
+        { nisn: "0111830830", nama: "RIZKI NUR INDAHSARI", kelas: "9D", status: "LULUS" },
+        { nisn: "0108049518", nama: "ROHMAT AWALUDIN", kelas: "9D", status: "LULUS" },
+        { nisn: "0114188453", nama: "SAHID FEBRI AL MUQSID", kelas: "9D", status: "LULUS" },
+        { nisn: "0109926818", nama: "SISKA NIA ANJANI", kelas: "9D", status: "LULUS" },
+        { nisn: "0114991747", nama: "SITI NURKHOERIYAH", kelas: "9D", status: "LULUS" },
+        { nisn: "0112792841", nama: "STEVANY DIVA ANGELIA", kelas: "9D", status: "LULUS" },
+        { nisn: "3102468971", nama: "WINDA SETIYO WATI", kelas: "9D", status: "LULUS" },
+        { nisn: "0103644090", nama: "YUSRIEL FATHUR JULIONATAN", kelas: "9D", status: "LULUS" }
+    ];
+
+    function findStudent(nisn) {
+        return studentsList.find(s => s.nisn === nisn);
+    }
+
+    // Confetti
+    function shootConfetti() {
+        for (let i = 0; i < 120; i++) {
+            const conf = document.createElement('div');
+            conf.style.position = 'fixed';
+            conf.style.width = Math.random() * 10 + 4 + 'px';
+            conf.style.height = conf.style.width;
+            conf.style.background = `hsl(${Math.random() * 360}, 90%, 60%)`;
+            conf.style.left = Math.random() * window.innerWidth + 'px';
+            conf.style.top = '-20px';
+            conf.style.borderRadius = '50%';
+            conf.style.pointerEvents = 'none';
+            conf.style.zIndex = '10001';
+            conf.style.animation = `fallConf ${Math.random() * 2 + 1.2}s linear forwards`;
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 2500);
+        }
+        const style = document.createElement('style');
+        style.textContent = `@keyframes fallConf { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }`;
+        document.head.appendChild(style);
+    }
+
+    function showModal(student) {
+        if (!student) {
+            alert("NISN tidak ditemukan. Pastikan memasukkan 10 digit NISN dengan benar.");
+            return;
+        }
+        document.getElementById('modalNama').innerText = student.nama;
+        document.getElementById('modalKelas').innerText = student.kelas;
+        document.getElementById('modalNisn').innerText = student.nisn;
+        document.getElementById('modalUcapan').innerHTML = `🎉 Selamat! ${student.nama} dinyatakan LULUS dari SMP Negeri 2 Gringsing TA 2025/2026 🎉 <br> <i class="fas fa-star" style="color:#fbbf24;"></i> Prestasi membanggakan!`;
+        const modal = document.getElementById('graduateModal');
+        modal.style.display = 'flex';
+        shootConfetti();
+    }
+
+    function closeModal() {
+        document.getElementById('graduateModal').style.display = 'none';
+    }
+
+    // ELEMEN
+    const nisnInput = document.getElementById('nisnInput');
+    const cekBtn = document.getElementById('btnCekLulus');
+    const statusMsgDiv = document.getElementById('countdownStatusMsg');
+
+    let isAnnouncementOpen = false; // flag apakah pengumuman sudah dapat diakses
+
+    // Timer target: 02 Juni 2026 18:00:00 WIB (GMT+7)
+    function initCountdownWithLock() {
+        const targetDate = new Date(2026, 5, 02, 18, 0, 0);
+        const targetDisplay = targetDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ', 18:00 WIB';
+        document.getElementById('targetDateDisplay').innerText = targetDisplay;
+
+        function update() {
+            const now = new Date();
+            const diff = targetDate - now;
+            if (diff <= 0) {
+                // Waktu pengumuman telah tiba
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                if (!isAnnouncementOpen) {
+                    isAnnouncementOpen = true;
+                    // Aktifkan fitur
+                    nisnInput.disabled = false;
+                    cekBtn.disabled = false;
+                    statusMsgDiv.innerHTML = '<span style="background:#10b981; padding:2px 12px; border-radius:30px;"><i class="fas fa-check-circle"></i> PENGUMUMAN TELAH DIBUKA! Silakan cek hasil kelulusan.</span>';
+                    statusMsgDiv.style.color = "#bbf7d0";
+                }
+                return;
+            }
+            // Hitung sisa waktu
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (86400000)) / (3600000));
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            
+            if (!isAnnouncementOpen) {
+                statusMsgDiv.innerHTML = '<i class="fas fa-lock"></i> Pengumuman belum dibuka. Harap tunggu hingga countdown selesai.';
+                statusMsgDiv.style.color = "#facc15";
+            }
+        }
+        update();
+        setInterval(update, 1000);
+    }
+
+    // Event cek kelulusan dengan validasi lock
+    cekBtn.addEventListener('click', () => {
+        if (!isAnnouncementOpen) {
+            alert("⛔ Pengumuman kelulusan belum dibuka! Silakan tunggu hingga waktu yang ditentukan.");
+            return;
+        }
+        let nisnVal = nisnInput.value.trim();
+        if (nisnVal === "") {
+            alert("Harap masukkan NISN terlebih dahulu.");
+            return;
+        }
+        const student = findStudent(nisnVal);
+        if (!student) {
+            alert("NISN tidak ditemukan. Pastikan memasukkan 10 digit NISN dengan benar.");
+            return;
+        }
+        showModal(student);
+    });
+
+    // Close modal
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('graduateModal');
+        if (e.target === modal) closeModal();
+    });
+    document.getElementById('simpanSertifikatBtn').addEventListener('click', () => {
+        alert("📸 Ambil screenshot (Windows: Win+Shift+S / Mac: Cmd+Shift+4) untuk menyimpan gambar kelulusan anda. Selamat!");
+    });
+    nisnInput.addEventListener('input', function(e) {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Mulai countdown dengan blokir akses awal
+    initCountdownWithLock();
+</script>
+</body>
+</html>
